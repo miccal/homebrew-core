@@ -4,6 +4,7 @@ class CucumberRuby < Formula
   url "https://github.com/cucumber/cucumber-ruby/archive/v6.1.0.tar.gz"
   sha256 "dfa4e1ef20498255f1c1dcd089add0e2e427f11d6bb53c06184ed4f70385ce1b"
   license "MIT"
+  revision 1
 
   bottle do
     sha256               big_sur:  "d1053be0ce5fb238c45bd404d5662c518d007d9c46ce72c889d0962fe357d7d6"
