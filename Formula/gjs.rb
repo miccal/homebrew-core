@@ -4,6 +4,7 @@ class Gjs < Formula
   url "https://download.gnome.org/sources/gjs/1.68/gjs-1.68.1.tar.xz"
   sha256 "2ffa3ec2041104fcf9ab5dcc8f7cd9caa062278590318ffef9541956af5b4c70"
   license all_of: ["LGPL-2.0-or-later", "MIT"]
+  revision 1
 
   bottle do
     sha256 big_sur:  "09de9508a973b368bf81cd451429b27214e8ee97b3c098416aabb06076497bbc"
