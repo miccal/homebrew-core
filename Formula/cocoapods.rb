@@ -4,7 +4,7 @@ class Cocoapods < Formula
   url "https://github.com/CocoaPods/CocoaPods/archive/1.10.1.tar.gz"
   sha256 "7629705179e4bfd894bebe4ed62c28d1cc539103f6d1924f4c8127f46cbd13e1"
   license "MIT"
-  revision 1
+  revision 2
 
   bottle do
     sha256 cellar: :any, arm64_big_sur: "bf7b573944dfb6dee095e847102eb5595cafc69e56bd3e0f19e2bbe77b0b3e49"
