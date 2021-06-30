@@ -4,7 +4,7 @@ class LlvmAT8 < Formula
   url "https://github.com/llvm/llvm-project/releases/download/llvmorg-8.0.1/llvm-8.0.1.src.tar.xz"
   sha256 "44787a6d02f7140f145e2250d56c9f849334e11f9ae379827510ed72f12b75e7"
   license "NCSA"
-  revision 3
+  revision 4
 
   bottle do
     sha256 cellar: :any,                 catalina:     "ab099d84e5f0a58ea37172fd85753336d855fc25e9459ceff12ddc2dbb56ef71"
@@ -20,19 +20,21 @@ class LlvmAT8 < Formula
 
   # https://llvm.org/docs/GettingStarted.html#requirement
   depends_on "cmake" => :build
+  depends_on maximum_macos: [:catalina, :build]
   depends_on xcode: :build
   depends_on arch: :x86_64
-  depends_on "libffi"
   depends_on "swig"
+
+  uses_from_macos "libedit"
+  uses_from_macos "libffi", since: :catalina
+  uses_from_macos "libxml2"
+  uses_from_macos "ncurses"
+  uses_from_macos "zlib"
 
   on_linux do
     depends_on "glibc" if Formula["glibc"].any_version_installed?
     depends_on "binutils" # needed for gold and strip
-    depends_on "libedit" # llvm requires <histedit.h>
     depends_on "libelf" # openmp requires <gelf.h>
-    depends_on "ncurses"
-    depends_on "libxml2"
-    depends_on "zlib"
     depends_on "python@3.8"
   end
 
@@ -110,7 +112,7 @@ class LlvmAT8 < Formula
     # can almost be treated as an entirely different build from llvm.
     ENV.permit_arch_flags
 
-    args = %W[
+    args = %w[
       -DLIBOMP_ARCH=x86_64
       -DLINK_POLLY_INTO_TOOLS=ON
       -DLLVM_BUILD_LLVM_DYLIB=ON
@@ -123,12 +125,18 @@ class LlvmAT8 < Formula
       -DLLVM_OPTIMIZED_TABLEGEN=ON
       -DLLVM_TARGETS_TO_BUILD=all
       -DWITH_POLLY=ON
-      -DFFI_INCLUDE_DIR=#{Formula["libffi"].opt_lib}/libffi-#{Formula["libffi"].version}/include
-      -DFFI_LIBRARY_DIR=#{Formula["libffi"].opt_lib}
       -DLLDB_USE_SYSTEM_DEBUGSERVER=ON
       -DLLDB_DISABLE_PYTHON=1
       -DLIBOMP_INSTALL_ALIASES=OFF
     ]
+
+    if MacOS.version >= :catalina
+      args << "-DFFI_INCLUDE_DIR=#{MacOS.sdk_path}/usr/include/ffi"
+      args << "-DFFI_LIBRARY_DIR=#{MacOS.sdk_path}/usr/lib"
+    else
+      args << "-DFFI_INCLUDE_DIR=#{Formula["libffi"].opt_include}"
+      args << "-DFFI_LIBRARY_DIR=#{Formula["libffi"].opt_lib}"
+    end
 
     on_macos do
       args << "-DLLVM_BUILD_EXTERNAL_COMPILER_RT=ON" if MacOS.version <= :mojave
