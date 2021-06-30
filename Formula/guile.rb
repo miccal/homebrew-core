@@ -5,6 +5,7 @@ class Guile < Formula
   mirror "https://ftpmirror.gnu.org/guile/guile-3.0.7.tar.xz"
   sha256 "f57d86c70620271bfceb7a9be0c81744a033f08adc7ceba832c9917ab3e691b7"
   license "LGPL-3.0-or-later"
+  revision 1
 
   bottle do
     sha256 arm64_big_sur: "1943b7ddae69e16cf1b9f81505bfb20129b988d7bffc40460088d29c518a960a"
