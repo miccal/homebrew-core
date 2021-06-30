@@ -5,6 +5,7 @@ class Moarvm < Formula
   url "https://github.com/MoarVM/MoarVM/releases/download/2021.06/MoarVM-2021.06.tar.gz"
   sha256 "2300a921d504c9d33f111cbe08097d0011bfb06000c018b8d4353d97966772a7"
   license "Artistic-2.0"
+  revision 1
 
   livecheck do
     url "https://github.com/MoarVM/MoarVM.git"
