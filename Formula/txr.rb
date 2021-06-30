@@ -4,6 +4,7 @@ class Txr < Formula
   url "http://www.kylheku.com/cgit/txr/snapshot/txr-265.tar.bz2"
   sha256 "5dac8fa64350efe5abd3e9f618db2fcfeee1718db329cfd27b29bd61f113605d"
   license "BSD-2-Clause"
+  revision 1
 
   livecheck do
     url "http://www.kylheku.com/cgit/txr"
