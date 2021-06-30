@@ -5,6 +5,7 @@ class Micropython < Formula
       tag:      "v1.16",
       revision: "7c51cb2307eaca1a1ccc071e0bb5eb4a5f734610"
   license "MIT"
+  revision 1
 
   bottle do
     sha256 cellar: :any, arm64_big_sur: "e9fa695e69a3d93b60289e8e4698cb99cf909f69af7b62565a8a16d32c9e40c5"
